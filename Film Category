@@ -1,0 +1,18 @@
+--Task: Create a list of the film titles including their title, length, and category name ordered descendingly by length. 
+--Filter the results to only the movies in the category 'Drama' or 'Sports'.
+--Question: In which category is the longest film and how long is it?
+SELECT
+	TITLE,
+	LENGTH,
+	NAME AS CATEGORY_NAME
+FROM
+	FILM F
+	INNER JOIN FILM_CATEGORY FC ON FC.FILM_ID = F.FILM_ID
+	INNER JOIN CATEGORY C ON C.CATEGORY_ID = FC.CATEGORY_ID
+WHERE
+	NAME LIKE 'Drama'
+	OR NAME LIKE 'Sports'
+ORDER BY
+	LENGTH DESC
+LIMIT
+	1
