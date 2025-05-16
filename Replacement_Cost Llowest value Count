@@ -1,0 +1,23 @@
+--Task: Write a query that gives an overview of how many films have replacements costs in the following cost ranges (low: 9.99 - 19.99 medium: 20.00 - 24.99 high: 25.00 - 29.99)
+--Question: How many films have a replacement cost in the "low" group?
+SELECT
+	CASE
+		WHEN REPLACEMENT_COST <= 19.99 THEN 'Low'
+		WHEN REPLACEMENT_COST BETWEEN 20.00 AND 24.99  THEN 'Medium'
+		ELSE 'High'
+	END AS "Rating",
+	COUNT(REPLACEMENT_COST) AS "Total_Count"
+FROM
+	FILM
+WHERE
+	CASE
+		WHEN REPLACEMENT_COST <= 19.99 THEN 'Low'
+		WHEN REPLACEMENT_COST BETWEEN 20.00 AND 24.99  THEN 'Medium'
+		ELSE 'High'
+	END = 'Low'
+GROUP BY
+	CASE
+		WHEN REPLACEMENT_COST <= 19.99 THEN 'Low'
+		WHEN REPLACEMENT_COST BETWEEN 20.00 AND 24.99  THEN 'Medium'
+		ELSE 'High'
+	END
